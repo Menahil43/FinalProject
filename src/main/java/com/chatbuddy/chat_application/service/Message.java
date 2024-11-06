@@ -16,5 +16,10 @@ public class Message {
 	private MsgType type;
 	private String content;
 	private String sender;
+	public Object getSender;
+	public static Object builder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

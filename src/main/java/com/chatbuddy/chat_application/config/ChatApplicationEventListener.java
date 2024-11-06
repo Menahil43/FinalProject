@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ChatApplicationEventListener {
     
-    private final SimpMessageSendingOperations messageOperations; // Line 22
+    private final SimpMessageSendingOperations messageOperations = null;
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
@@ -27,9 +27,11 @@ public class ChatApplicationEventListener {
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         
         if (Objects.nonNull(username)) {
-            log.info("User disconnected: {}", username);
+            Object log;
+			((Object) log).info("User disconnected: {}", username);
             
-            messageOperations.convertAndSend("/topic/chat", Message.builder() // Line 30
+            messageOperations.convertAndSend("/topic/chat", ((Object) Message.builder() // Line 30
+)
                 .type(MsgType.LEAVE) // Line 32
                 .sender(username)
                 .build());
